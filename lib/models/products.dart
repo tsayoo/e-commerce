@@ -2,6 +2,7 @@
 import 'package:e_commerce/consts.dart';
 import 'package:flutter/material.dart';
 
+// satusatunya acuan utk data yang digunakan
 class Product {
   //ini itu untuk modelnya
   //model itu apa??
@@ -34,7 +35,7 @@ class Product {
       price: 2700000,
       size: 16,
       description: dummyText,
-      image: "assets/images/kandang-hairdryer.jpg",
+      image: "assets/images/kandang-hairdryer.png",
       color: const Color(0xFF3D82AE)),
   Product(
       id: 2,
@@ -42,7 +43,7 @@ class Product {
       price: 1450000,
       size: 5,
       description: dummyText,
-      image: "assets/images/Pet-groomingKit.jpg",
+      image: "assets/images/Pet-groomingkit.png",
       color: const Color(0xFFD3A984)),
   Product(
       id: 3,
@@ -50,24 +51,24 @@ class Product {
       price: 350000,
       size: 30,
       description: dummyText,
-      image: "assets/images/Pet-travelling-bottle.jpg",
-      color: const Color(0xFF989493)),
+      image: "assets/images/Pet-travelling-bottle.png",
+      color: const Color.fromARGB(255, 9, 188, 228)),
   Product(
       id: 4,
       title: "Pet Drink Fountain Automatic",
       price: 800000,
       size: 11,
       description: dummyText,
-      image: "assets/images/Water-fountain.jpg",
-      color: const Color(0xFFE6B398)),
+      image: "assets/images/auto-water-fountain.png",
+      color: const Color.fromARGB(255, 77, 132, 215)),
   Product(
       id: 5,
       title: "Car Seat Pet Travel",
       price: 1000000,
       size: 23,
       description: dummyText,
-      image: "assets/images/CarSeat.jpg",
-      color: const Color(0xFFFB7883)),
+      image: "assets/images/car-seat.png",
+      color: const Color.fromARGB(255, 130, 130, 130)),
   Product(
     id: 6,
     title: "Kitten Care Nursing kit",
@@ -75,7 +76,52 @@ class Product {
     size: 8,
     description: dummyText,
     image: "assets/images/PNursing-kit.png",
-    color: const Color(0xFFAEAEAE),
+    color: const Color.fromARGB(255, 17, 104, 158),
+  ),
+  Product(
+    id: 6,
+    title: "Pet food Cat Choize (Cat)",
+    price: 500000,
+    size: 10,
+    description: dummyText,
+    image: "assets/images/CatChoize_food.png",
+    color: const Color.fromARGB(255, 17, 104, 158),
+  ),
+  Product(
+    id: 6,
+    title: "Pet Accesories Cute Dinosaurus",
+    price: 80000,
+    size: 15,
+    description: dummyText,
+    image: "assets/images/pet_dinosaurus_model_biru.png",
+    color: const Color.fromARGB(255, 46, 149, 213),
+  ),
+  Product(
+    id: 6,
+    title: "Pet Food Himalaya (Dog)",
+    price: 32000,
+    size: 100,
+    description: dummyText,
+    image: "assets/images/Himalaya_dog_food.png",
+    color: const Color.fromARGB(255, 17, 104, 158),
+  ),
+  Product(
+    id: 6,
+    title: "Pet Food Life Cat (Cat)",
+    price: 10000,
+    size: 9,
+    description: dummyText,
+    image: "assets/images/LifeCat_food.png",
+    color: const Color.fromARGB(255, 17, 104, 158),
+  ),
+  Product(
+    id: 6,
+    title: "Pet Grooming Clippers",
+    price: 68000,
+    size: 30,
+    description: dummyText,
+    image: "assets/images/image(11)(1).png",
+    color: const Color.fromARGB(255, 17, 104, 158),
   ),
 ];
 

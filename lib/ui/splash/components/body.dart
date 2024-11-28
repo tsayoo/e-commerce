@@ -1,6 +1,6 @@
 import 'package:e_commerce/consts.dart';
 import 'package:e_commerce/size_config.dart';
-import 'package:e_commerce/ui/home/catalogue_screen.dart';
+import 'package:e_commerce/ui/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
 //Secara sederhana, StatelessWidget untuk UI yang tetap, dan StatefulWidget untuk UI yang bisa berubah.
@@ -15,29 +15,31 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int currentPage = 0;
-  PageController _pageController = PageController(); //for controlling our route yg di page builder ya ga si? bisa jg dibilang buat dia ke catalogue screen
+  final PageController _pageController = PageController(); //for controlling our route yg di page builder ya ga si? bisa jg dibilang buat dia ke catalogue screen, PINDAH HALAMN
 
   // List<String> product = List.generate( //wadah prduct atau genarate product
   //   10, (index) => "Product ${index + 1}"
   //   );
 
   // dasar pengambilan data dari API
-  List<Map<String, String>> splashData =[
-    {
-      "text" : "Welcome to Petzation! your lovely pet's best friend",
+  List<Map<String, String>> splashData = [
+  {
+    "text": "Welcome to Petzation! your lovely pet's best friend",
+    "image": "assets/images/logo_berwarna.png", // Gambar default untuk terang
+    "image_dark": "assets/images/logo_putih.png", // Gambar untuk tema gelap
+  },
+  {
+    "text": "We sell a pet product around jakarta \n and around the world",
+    "image": "assets/images/logo_berwarna.png",
+    "image_dark": "assets/images/logo_putih.png",
+  },
+  {
+    "text": "Let's make a big changes \n through a better e-commerce app",
+    "image": "assets/images/logo_berwarna.png",
+    "image_dark": "assets/images/logo_putih.png",
+  },
+];
 
-      "image" : "assets/images/logo_berwarna.png",
-    },
-    {
-      "text" : "We sell a pet product around jakarta \n and around the world",
-      "image" : "assets/images/logo_berwarna.png",
-    },
-    {
-      "text" : "Let's make a big changes \n through a better e-commerce app",
-      "image" : "assets/images/logo_berwarna.png",
-    },
-
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,17 +62,18 @@ class _BodyState extends State<Body> {
                         currentPage = value;// manggil integer representatif yg udh kita panggil di awal, dia mengambil data dari page pertama
                       });
                     },
-                  itemCount: splashData.length, //utk mengasih
-                  itemBuilder: (context, index) => SplashContent(
+                  itemCount: splashData.length, //utk mengasih //.length utk ngasih tau size utk array nya 
+                  itemBuilder: (context, index) => SplashContent( //item builder utk jembatan antara data dan
                     text: splashData[index]["text"]! , 
-                    image:  splashData[index]["image"]!
+                    image:  splashData[index]["image"]!,
+                    imageDark: splashData[index]["image_dark"]!,
                     )
                   //context mereprentasikan halaman sekarang
                   //index itu, list di akses dengan index
                   //buider bisa di pake dimana aja, disini kita pake di pageview, biar pas
                 ),
               ),
-            ),
+            ), //expanded buat mengisi kekosongan yg ada, biar isinya proposional
            Expanded(
             child: Row(
             mainAxisAlignment: MainAxisAlignment.center, // Aligns the dots in the center
@@ -96,10 +99,10 @@ class _BodyState extends State<Body> {
                       // kode yg dipake buat berpindah antar halaman
                       // Aksi untuk halaman terakhir, pindah ke halaman utama
                       //what is length? panjangnya data/banyanknya data
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context, //context itu represantisikan currrent page kita
                         MaterialPageRoute(
-                          builder: (context) => const CatalogueScreen())
+                          builder: (context) =>  LoginScreen())
                       );
                       
                     } else {
@@ -150,7 +153,6 @@ class _BodyState extends State<Body> {
     height: 10,
     decoration: BoxDecoration(
       color: currentPage == index ? primaryColor : secondaryColor,  //ini itu if else  Warna titik aktif dan tidak aktif 
-      borderRadius: BorderRadius.circular(5),
     ),
   );
 }
@@ -159,29 +161,44 @@ class _BodyState extends State<Body> {
 
 class SplashContent extends StatelessWidget {
   const SplashContent({
-    super.key, required this.text, required this.image,
+    super.key, 
+    required this.text, 
+    required this.image,
+    required this.imageDark,
   });
-  final String text, image;
+  
+  final String text, image, imageDark;
 
   @override
   Widget build(BuildContext context) {
+    // Mendapatkan mode tema saat ini (terang atau gelap)
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    
+    // Pilih gambar berdasarkan mode tema
+    String imageToUse = isDarkMode ? imageDark : image;
+    
+    // Pilih warna teks berdasarkan mode tema
+    Color textColor = isDarkMode ? Colors.white : Colors.black;
+
     return Column(
-    children: [
-      const Spacer(),
-      Text(
-        'FloShop',
-        style: TextStyle(
-          color: primaryColor,
-          fontSize: getPropotinateScreenWidht(36.0),
+      children: [
+        const Spacer(),
+        Text(
+          'Petzation',
+          style: TextStyle(
+            color: Colors.green,
+            fontSize: getPropotinateScreenWidht(36.0),
           ),
         ),
-        Text (
+        Text(
           text,
           textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor, // Gunakan warna teks yang sesuai dengan mode
           ),
-        Image.asset(image), // Use Image.asset to load asset images
-    ],
-            );
+        ),
+        Image.asset(imageToUse), // Gunakan gambar berdasarkan mode
+      ],
+    );
   }
 }
-

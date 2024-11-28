@@ -16,11 +16,12 @@ class _CategoriesState extends State<Categories> {
   //list itu kurung kotak []
   //kalo map itu kurung kurawal{}
   //kalo ini list, pengembailan nya juga harus list, gabisa langsung dipanggil
-  List<String> categories = [
-    "Pet Food", 
-    "Pet Kit", 
-    "Pet Accessories", 
-    "Pet Grooming"
+  // untuk inisiali view pager
+  List<String> categories = [ //map itu kurawal, list itu kurung kotak
+    "Food", 
+    "Kit", 
+    "Accessories", 
+    "Grooming"
   ];
 
   int selectedIndex =0; //untuk ngasih tau selected index dimulai dari 0, ngasih tau pertama itu mulai dari mana, ya pertama ito zero lahh
@@ -58,8 +59,9 @@ class _CategoriesState extends State<Categories> {
       // kalo to many positional argument berarti coba tambahin child, pokoknya hirarq nya salah
 
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               categories[index],
@@ -73,7 +75,7 @@ class _CategoriesState extends State<Categories> {
                 top: 3
               ),
               height: 2,
-              width: 50,
+              width: 30,
               color: selectedIndex == index ? primaryColor : secondaryColor,
             )
           ],

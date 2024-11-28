@@ -1,9 +1,11 @@
 import 'package:e_commerce/consts.dart';
 import 'package:e_commerce/models/products.dart';
+import 'package:e_commerce/ui/cart/cart_screen.dart';
 import 'package:e_commerce/ui/detail/components/add_to_cart.dart';
 import 'package:e_commerce/ui/detail/components/cart_counter.dart';
 import 'package:e_commerce/ui/detail/components/color_and_size.dart';
 import 'package:e_commerce/ui/detail/components/description.dart';
+import 'package:e_commerce/ui/detail/components/fav_button.dart';
 import 'package:e_commerce/ui/detail/components/product_title.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +15,10 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int quantity = 1;
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: product.color,
+            backgroundColor: product.color,
       appBar: AppBar(
         backgroundColor: product.color,
         elevation: 0,
@@ -25,7 +28,12 @@ class DetailScreen extends StatelessWidget {
             icon: const Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartScreen())
+               );
+            },
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
@@ -60,9 +68,15 @@ class DetailScreen extends StatelessWidget {
                         const SizedBox(height: defaultPadding),
                         Description(product: product),
                         const SizedBox(height: defaultPadding),
-                        const CartCounter(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CartCounter(product: product),
+                            FavButton(product: product),
+                          ],
+                        ),
                         const SizedBox(height: defaultPadding),
-                        AddToCart(product: product),
+                        AddToCart(product: product, quantity: quantity),
                       ],
                     ),
                   ),

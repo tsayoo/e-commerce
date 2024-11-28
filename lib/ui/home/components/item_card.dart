@@ -5,14 +5,11 @@ import 'package:e_commerce/models/products.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/consts.dart';
 
-class ItemsCard extends StatelessWidget {
-  const ItemsCard({super.key, required this.product, required this.press});
+class ItemCard extends StatelessWidget {
+  const ItemCard({super.key, required this.product, required this.press});
 
   final Product product;//ini itu sub class dari anak anak yg punya banyak data
   final VoidCallback press; //mengasih sebuah feed back ke user
-
-
-
   //mvvm adalah model view-view model
   //model itu detail data
   //item itu untuk mendefinidiksn bagaiman sebuah objek akan terjadi
@@ -22,7 +19,7 @@ class ItemsCard extends StatelessWidget {
    @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press, // Memanggil fungsi press saat ditekan
+      onTap: press, // Memanggil fungsi press saat ditekan (press itu dummy action)
       child: Column(
         children: [
           Expanded(

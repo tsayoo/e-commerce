@@ -19,7 +19,7 @@ class ProductTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start, // Aligns text to the start
         children: [
           const Text(
-            "Leather Hand Bag", // Static title
+            "Pet Accessories", // Static title
             style: TextStyle(color: Colors.white),
           ),
           Text(
